@@ -17,8 +17,9 @@ Chose to use real data from the CDC
 
 
 Compare hypertension from poverty and stress in NHIS survey data from 2022-2023. If time, determine if has a direct reflection on memory. Offer predictive analysis for future years based on trends.
+
 <ul>
-General:
+<h2>General:</h2>
 <li>MHRX_A(ANY_MEDS) (Took medication for other emotions/concentration/behavior/mental health, past 12 months)</li>
 <li>URBRRL(MET_SIZE) (Size of Metro Area)</li>
 <li>HHX(HH_NUM) (Randomly assigned household number unique to a household) Would not match same household in previous years</li>
@@ -30,24 +31,26 @@ General:
 <li>EDUCP_A(EDU_LEV) (Education Level)</li>
 <li>BMICAT_A(BMI) (Body Mass Index)</li>
 
-Hypertension Fields:
+<h2>Hypertension Fields:</h2>
+
 <li>HYPEV_A(HYPPEV)  (Have you EVER been told by a doctor or other health professional that you had ...Hypertension, also called high blood pressure?)</li>
 <li>HYPDIF_A(HYPDIF) (Were you told on two or more DIFFERENT visits that you had hypertension or high blood pressure?)</li>
 <li>HYP12M_A(HYP12M) (During the past 12 months, have you had hypertension or high blood pressure?)</li>
 <li>HYPMED_A(HYPMED) (Are you NOW taking any medication prescribed by a doctor for your high blood pressure?)</li>
 
-Poverty Fields:
+<h2>Poverty Fields:</h2>
+
 <li>POVRATTC_A (SA family poverty ratio) </li>
 <li>RATCAT_A (Ratio of family income to poverty threshold for SA's family)</li>
 
-Stress/Anxiety:
+<h2>Stress/Anxiety:</h2>
 
 <li>ANXEV_A(ANXDIAG) (Have you EVER been told by a doctor or other health professional that you had ...Any type of anxiety disorder?)</li>
 <li>ANXFREQ_A(ANXFREQ) (How often do you feel worried, nervous or anxious? Would you say daily, weekly, monthly, a few times a year, or never?)</li>
 <li>ANXMED_A(ANXMED) (Take medication for worried/nervous/anxious feelings)</li>
 <li>ANXLEVEL_A(ANXLEVEL) (Thinking about the last time you felt worried, nervous or anxious, how would you describe the level of these feelings? Would you say a little, a lot, or somewhere in between?)</li>
 
-Memory: Very limited responses so may not use.
+<h2>Memory: Very limited responses so may not use.</h2>
 
 <li>COGMEMDFF_A(MEMDIF) (Do you have difficulty remembering or concentrating?)</li>
 <li>COGTYPEDFF_A(COGTYPE) (Is that a difficulty with remembering, concentrating, or both?)</li>
@@ -57,19 +60,20 @@ Memory: Very limited responses so may not use.
 </ul>
 
 <h1>Steps:</h1>
-1.	☒Save copies of original data
-2.	☒Search for Field names in Codebook for Hypertension, Poverty, Stress/Anxiety
-3.	☒Search for Field names in common from both files for #2, Household ID, year, age, sex, health care, etc.
-4.	☒Edit Column Headings based on Definitions for all fields in this report
-a.	☒Remove all other columns in dataset
-5.	☒Rename files and save
-6.	☒Connect to SQL Server, create database, import csv’s
+<ol>
+<li>Save copies of original data</li>
+<li>Search for Field names in Codebook for Hypertension, Poverty, Stress/Anxiety</li>
+<li>Search for Field names in common from both files for #2, Household ID, year, age, sex, health care, etc.</li>
+<li>Edit Column Headings based on Definitions for all fields in this report
+a.	☒Remove all other columns in dataset</li>
+<li>Rename files and save</li>
+<li>Connect to SQL Server, create database, import csv’s
 a.	Change columns to 500 in advanced
 b.	Include all nulls
-c.	Destination to SQL Server Native Client
-7.	☐enter SQL query to create a view with data needed for visuals
-8.	☐Connect from Power BI 
+c.	Destination to SQL Server Native Client</li>
+<li>enter SQL query to create a view with data needed for visuals</li>
+<li>Connect from Power BI 
 a.	☐Add columns with DAX to include descriptions and frequencies
-b.	☐Create visualizations
-9.	☐Predictive Analysis for 2024 using Python?
-
+b.	☐Create visualizations</li>
+<li>Predictive Analysis for 2024 using Python?</li>
+</ol>
