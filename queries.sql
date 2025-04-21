@@ -21,11 +21,10 @@ FROM
 GO
 
 -- View for poverty ratio categories by year
-/*Msg 8117, Level 16, State 1, Procedure vw_NHIS_Poverty_Analysis, Line 12 [Batch Start Line 0]
-Operand data type varchar is invalid for avg operator.
+
 CREATE VIEW vw_NHIS_Poverty_Analysis AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     -- Create poverty categories for analysis
     CASE 
         WHEN POVRATIO < 1.0 THEN 'Below poverty line'
@@ -39,7 +38,7 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR,
+    SurveyYear,
     CASE 
         WHEN POVRATIO < 1.0 THEN 'Below poverty line'
         WHEN POVRATIO BETWEEN 1.0 AND 1.99 THEN 'Near poverty'
@@ -47,12 +46,11 @@ GROUP BY
         ELSE 'High income' 
     END;
 GO
-*/
 
 -- View for hypertension analysis by year
 CREATE VIEW vw_NHIS_Hypertension_Analysis AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     COUNT(*) AS TotalRespondents,
     -- HYPEV: Ever been told you had hypertension
     SUM(CASE WHEN HYPEV = 1 THEN 1 ELSE 0 END) AS HYPEV_Yes_Count,
@@ -76,13 +74,13 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR;
+    SurveyYear;
 GO
 
 -- View for anxiety analysis by year
 CREATE VIEW vw_NHIS_Anxiety_Analysis AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     COUNT(*) AS TotalRespondents,
     -- ANXDIAG: Ever been diagnosed with anxiety
     SUM(CASE WHEN ANXDIAG = 1 THEN 1 ELSE 0 END) AS ANXDIAG_Yes_Count,
@@ -109,13 +107,13 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR;
+    SurveyYear;
 GO
 
 -- View for poverty by demographics
 CREATE VIEW vw_NHIS_Poverty_Demographics AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     SEX,
     CASE 
         WHEN AGE < 18 THEN 'Under 18'
@@ -132,7 +130,7 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR,
+    SurveyYear,
     SEX,
     CASE 
         WHEN AGE < 18 THEN 'Under 18'
@@ -148,7 +146,7 @@ GO
 -- View for hypertension by demographics
 CREATE VIEW vw_NHIS_Hypertension_Demographics AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     SEX,
     CASE 
         WHEN AGE < 18 THEN 'Under 18'
@@ -167,7 +165,7 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR,
+    SurveyYear,
     SEX,
     CASE 
         WHEN AGE < 18 THEN 'Under 18'
@@ -183,7 +181,7 @@ GO
 -- View for anxiety by demographics
 CREATE VIEW vw_NHIS_Anxiety_Demographics AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     SEX,
     CASE 
         WHEN AGE < 18 THEN 'Under 18'
@@ -206,7 +204,7 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR,
+    SurveyYear,
     SEX,
     CASE 
         WHEN AGE < 18 THEN 'Under 18'
@@ -222,7 +220,7 @@ GO
 -- View for relationship between poverty, hypertension, and anxiety
 CREATE VIEW vw_NHIS_Condition_Relationships AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     CASE 
         WHEN POVRATIO < 1.0 THEN 'Below poverty line'
         WHEN POVRATIO BETWEEN 1.0 AND 1.99 THEN 'Near poverty'
@@ -242,7 +240,7 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR,
+    SurveyYear,
     CASE 
         WHEN POVRATIO < 1.0 THEN 'Below poverty line'
         WHEN POVRATIO BETWEEN 1.0 AND 1.99 THEN 'Near poverty'
@@ -254,7 +252,7 @@ GO
 -- View for medication usage analysis
 CREATE VIEW vw_NHIS_Medication_Analysis AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     -- Hypertension medication analysis
     COUNT(CASE WHEN HYPEV = 1 THEN 1 END) AS Hypertension_Diagnosed_Count,
     SUM(CASE WHEN HYPEV = 1 AND HYPMED = 1 THEN 1 ELSE 0 END) AS Hypertension_On_Medication_Count,
@@ -270,13 +268,13 @@ SELECT
 FROM
     vw_NHIS_Combined
 GROUP BY
-    SRVY_YR;
+    SurveyYear;
 GO
 
 -- View for anxiety frequency and level analysis
 CREATE VIEW vw_NHIS_Anxiety_Severity_Analysis AS
 SELECT
-    SRVY_YR,
+    SurveyYear,
     -- Translate code values to descriptive labels
     CASE 
         WHEN ANXFREQ = 1 THEN 'Daily'
@@ -300,7 +298,7 @@ FROM
 WHERE
     ANXDIAG = 1  -- Only include those diagnosed with anxiety
 GROUP BY
-    SRVY_YR,
+    SurveyYear,
     CASE 
         WHEN ANXFREQ = 1 THEN 'Daily'
         WHEN ANXFREQ = 2 THEN 'Weekly'

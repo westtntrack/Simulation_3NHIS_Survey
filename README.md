@@ -30,6 +30,7 @@ Compare hypertension from poverty and stress in NHIS survey data from 2022-2023.
 <li>HISP_A(HISP) (Hispanic?)</li>
 <li>EDUCP_A(EDU_LEV) (Education Level)</li>
 <li>BMICAT_A(BMI) (Body Mass Index)</li>
+<li>RACEALLP_A (RACE)</li>
 
 <h2>Hypertension Fields:</h2>
 
