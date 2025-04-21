@@ -5,6 +5,13 @@ FROM
     adult22_Clean;
 GO
 
+-- Create a view for the 2022 data
+CREATE VIEW vw_NHIS_2023 AS
+SELECT *
+FROM 
+    adult23_Clean;
+GO
+
 -- Create a view for the 2023 data
 CREATE VIEW vw_NHIS_Combined AS
 SELECT 
