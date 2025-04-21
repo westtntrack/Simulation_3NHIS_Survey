@@ -38,3 +38,43 @@ SWITCH(
     09, "Don't Know",
     "Unknown"
 )
+
+// Formula for EDU_LEV (Education Level - All Groups)
+Education Description = 
+SWITCH(
+    [EDU_LEV],
+    00, "Never attended/kindergarten only",
+    01, "Grade 1-11",
+    02, "12th grade, no diploma ",
+    03, "GED or equivalent",
+    04, "High School Graduate",
+    05, "Some college, no degree ",
+    06, "Associate degree: occupational, technical, or vocational program",
+    07, "Associate degree: academic program ",
+    08, "Bachelor's degree (Example: BA, AB, BS, BBA) ",
+    09, "Master's degree (Example: MA, MS, MEng, MEd, MBA)",
+    10, "Professional School or Doctoral degree (Example: MD, DDS, DVM, JD,
+PhD, EdD)
+",
+    97, "Refused",
+    98, "Not Ascertained ",
+    99, "Don't Know",
+    "Unknown"
+)
+
+Age Category = 
+SWITCH(
+    TRUE(),
+    [AGE] < 0, "Invalid Age",
+    [AGE] < 10, "0-9",
+    [AGE] < 20, "10-19",
+    [AGE] < 30, "20-29",
+    [AGE] < 40, "30-39",
+    [AGE] < 50, "40-49",
+    [AGE] < 60, "50-59",
+    [AGE] < 70, "60-69",
+    [AGE] < 80, "70-79",
+    [AGE] < 90, "80-89",
+    [AGE] < 100, "90-99",
+    "100+"
+)

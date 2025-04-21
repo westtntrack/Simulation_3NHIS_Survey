@@ -109,15 +109,6 @@
   - Recommendations for targeted interventions
   - Interactive narrative with key findings
 
-#### Page 7: Detailed Data Explorer
-- **Title:** NHIS Data Explorer
-- **Elements:**
-  - Advanced filtering options
-  - Detailed data tables with all metrics
-  - Custom visualization options
-  - Export capabilities
-  - Save view functionality
-  - Drill-through to record level details (if appropriate)
 
 ### Advanced Features
 
