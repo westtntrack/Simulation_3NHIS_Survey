@@ -62,6 +62,42 @@ PhD, EdD)
     "Unknown"
 )
 
+// Formula for HYPDIF
+HYP 2 Visits Description = 
+SWITCH(
+    [HYPDIF],
+    1, "Yes",
+    2, "No",
+    7, "Refused",
+    8, "Not Ascertained",
+    9, "Don't Know",
+    "Unknown"
+)
+
+// Formula for HYPPEV
+HYP Told Description = 
+SWITCH(
+    [HYPEV],
+    1, "Yes",
+    2, "No",
+    7, "Refused",
+    8, "Not Ascertained",
+    9, "Don't Know",
+    "Unknown"
+)
+
+// Formula for HYPMED
+HYP Taking Med Description = 
+SWITCH(
+    [HYPMED],
+    1, "Yes",
+    2, "No",
+    7, "Refused",
+    8, "Not Ascertained",
+    9, "Don't Know",
+    "Unknown"
+)
+
 Age Category = 
 SWITCH(
     TRUE(),
