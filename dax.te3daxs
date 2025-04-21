@@ -1,0 +1,40 @@
+// DAX Formulas to convert survey question numbers to table definitions in the NHIS Codebook
+
+// Formula for SEX_A (Sex)
+Sex Description = 
+SWITCH(
+    [SEX],
+    1, "Male",
+    2, "Female",
+    7, "Refused",
+    8, "Not ascertained",
+    9, "Don't know",
+    "Unknown"
+)
+
+// Formula for REGION (Geographic region)
+Region Description = 
+SWITCH(
+    [REGION],
+    1, "Northeast",
+    2, "Midwest",
+    3, "South",
+    4, "West",
+    "Unknown"
+)
+
+// Formula for RACEALLP_A (Race - All groups)
+Race Description = 
+SWITCH(
+    [RACE],
+    01, "White Only",
+    02, "Black/African American Only",
+    03, "Asian Only",
+    04, "AIAN Only",
+    05, "AIAN and any other group",
+    06, "Other Single and Multiple Races",
+    07, "Refused",
+    08, "Not Ascertained",
+    09, "Don't Know",
+    "Unknown"
+)
