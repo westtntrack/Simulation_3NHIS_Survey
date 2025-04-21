@@ -68,7 +68,7 @@ Compare hypertension from poverty and stress in NHIS survey data from 2022-2023.
 a.	☒Remove all other columns in dataset</li>
 <li>Rename files and save</li>
 <li>Connect to SQL Server, create database, import csv’s
-a.	Change columns to 500 in advanced
+a.	Change columns to 500 in advanced and decimal, numeric, float, varchar
 b.	Include all nulls
 c.	Destination to SQL Server Native Client</li>
 <li>enter SQL query to create a view with data needed for visuals</li>
