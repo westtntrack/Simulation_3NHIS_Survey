@@ -1,0 +1,225 @@
+# NHIS Health Indicators Comparison (2022-2023)
+## Power BI Report Design
+
+### Data Connection Setup
+- Connect to SQL Server database containing the created views
+- Import data from all views
+- Create necessary relationships between datasets
+
+### Report Pages Structure
+
+#### Page 1: Executive Dashboard
+- **Title:** NHIS Health Indicators Overview 2022-2023
+- **Elements:**
+  - Survey overview metrics (total respondents by year)
+  - Key indicators summary with year-over-year changes:
+    - Average poverty ratio
+    - Hypertension prevalence
+    - Anxiety diagnosis rate
+  - Trend indicators showing direction and percentage change
+  - Three small multiples showing historical comparison:
+    - Poverty distribution chart
+    - Hypertension metrics chart
+    - Anxiety metrics chart
+  - Demographic filters (sex, age group, race, region)
+  - Navigation buttons to detail pages
+
+#### Page 2: Poverty Analysis
+- **Title:** Poverty Indicators Analysis (POVRATIO & INC_POV_RATIO)
+- **Elements:**
+  - Distribution chart of POVRATIO by year (histogram)
+  - Average POVRATIO and INC_POV_RATIO comparison by year (column chart)
+  - Poverty categories breakdown by year (stacked bar chart):
+    - Below poverty line
+    - Near poverty
+    - Middle income
+    - High income
+  - Poverty metrics by demographic factors (matrix visual):
+    - By sex
+    - By age group
+    - By race
+    - By region
+  - Year-over-year change indicators for each metric
+  - Key insights card with automatic narrative
+
+#### Page 3: Hypertension Analysis
+- **Title:** Hypertension Indicators Analysis
+- **Elements:**
+  - Key metrics comparison cards showing year-over-year changes:
+    - HYPEV: Ever diagnosed with hypertension
+    - HYPDIF: Experiencing difficulties due to hypertension
+    - HYP12M: Had hypertension in past 12 months
+    - HYPMED: Taking medication for hypertension
+  - Clustered column chart comparing all hypertension variables between years
+  - Line chart showing medication rate among diagnosed (HYPMED/HYPEV ratio)
+  - Hypertension metrics by demographic factors (multiple small charts):
+    - By sex
+    - By age group
+    - By race
+    - By region
+  - Treatment gap analysis (diagnosed vs. medicated)
+  - Correlation between hypertension and BMI scatter plot
+  - Key insights card with automatic narrative
+
+#### Page 4: Anxiety Analysis
+- **Title:** Anxiety Indicators Analysis
+- **Elements:**
+  - Key metrics comparison cards showing year-over-year changes:
+    - ANXDIAG: Diagnosed with anxiety
+    - ANXMED: Taking medication for anxiety
+  - Anxiety frequency distribution by year (ANXFREQ):
+    - Daily
+    - Weekly
+    - Monthly
+    - Few times per year
+  - Anxiety severity distribution by year (ANXLEVEL):
+    - Mild
+    - Moderate
+    - Severe
+  - Heatmap showing frequency by severity
+  - Treatment analysis:
+    - Medication rate by anxiety severity
+    - Medication rate by anxiety frequency
+  - Anxiety metrics by demographic factors (multiple small charts)
+  - Key insights card with automatic narrative
+
+#### Page 5: Relationship Analysis
+- **Title:** Relationships Between Poverty, Hypertension, and Anxiety
+- **Elements:**
+  - Scatter plot: POVRATIO vs. hypertension prevalence
+  - Scatter plot: POVRATIO vs. anxiety prevalence
+  - Clustered column chart: Hypertension rates by poverty category
+  - Clustered column chart: Anxiety rates by poverty category
+  - Comorbidity analysis: % with both conditions by poverty category
+  - Medication usage patterns across economic groups
+  - Correlation matrix between all health indicators
+  - Key drivers analysis
+  - Narrative insights panel
+
+#### Page 6: Demographic Impact Analysis
+- **Title:** Demographic Factors Impact on Health Conditions
+- **Elements:**
+  - Decomposition tree showing hierarchical relationships:
+    - Start with overall prevalence
+    - Break down by age, sex, race, region
+  - Side-by-side comparison of demographic impact on each condition
+  - Gap analysis showing disparities between demographic groups
+  - Key demographic predictors for each condition
+  - Decision tree visualization showing how demographics interact
+  - Recommendations for targeted interventions
+  - Interactive narrative with key findings
+
+#### Page 7: Detailed Data Explorer
+- **Title:** NHIS Data Explorer
+- **Elements:**
+  - Advanced filtering options
+  - Detailed data tables with all metrics
+  - Custom visualization options
+  - Export capabilities
+  - Save view functionality
+  - Drill-through to record level details (if appropriate)
+
+### Advanced Features
+
+#### DAX Measures to Create
+```
+// Poverty-related measures
+Avg POVRATIO = AVERAGE(vw_NHIS_Combined[POVRATIO])
+Avg POVRATIO YoY Change = 
+    CALCULATE([Avg POVRATIO], SurveyYear = "2023") - 
+    CALCULATE([Avg POVRATIO], SurveyYear = "2022")
+
+Below Poverty Line % = 
+    DIVIDE(
+        COUNTX(FILTER(vw_NHIS_Combined, [POVRATIO] < 1.0), 1),
+        COUNTX(vw_NHIS_Combined, 1)
+    )
+
+// Hypertension-related measures
+HYPEV Rate = 
+    DIVIDE(
+        COUNTX(FILTER(vw_NHIS_Combined, [HYPEV] = 1), 1),
+        COUNTX(vw_NHIS_Combined, 1)
+    )
+    
+HYPEV YoY Change = 
+    CALCULATE([HYPEV Rate], SurveyYear = "2023") - 
+    CALCULATE([HYPEV Rate], SurveyYear = "2022")
+    
+Medication Rate Among Diagnosed HYP = 
+    DIVIDE(
+        COUNTX(FILTER(vw_NHIS_Combined, [HYPEV] = 1 && [HYPMED] = 1), 1),
+        COUNTX(FILTER(vw_NHIS_Combined, [HYPEV] = 1), 1)
+    )
+
+// Anxiety-related measures
+ANXDIAG Rate = 
+    DIVIDE(
+        COUNTX(FILTER(vw_NHIS_Combined, [ANXDIAG] = 1), 1),
+        COUNTX(vw_NHIS_Combined, 1)
+    )
+    
+ANXDIAG YoY Change = 
+    CALCULATE([ANXDIAG Rate], SurveyYear = "2023") - 
+    CALCULATE([ANXDIAG Rate], SurveyYear = "2022")
+    
+Severe Anxiety % = 
+    DIVIDE(
+        COUNTX(FILTER(vw_NHIS_Combined, [ANXLEVEL] = 3), 1),
+        COUNTX(FILTER(vw_NHIS_Combined, [ANXDIAG] = 1), 1)
+    )
+
+// Relationship measures
+HYP-ANX Comorbidity Rate = 
+    DIVIDE(
+        COUNTX(FILTER(vw_NHIS_Combined, [HYPEV] = 1 && [ANXDIAG] = 1), 1),
+        COUNTX(vw_NHIS_Combined, 1)
+    )
+    
+Poverty Impact on HYP = 
+    DIVIDE(
+        CALCULATE([HYPEV Rate], [POVRATIO] < 1.0),
+        CALCULATE([HYPEV Rate], [POVRATIO] >= 4.0)
+    )
+```
+
+### Visual Design and Layout
+- **Color scheme:**
+  - Poverty indicators: Blue color spectrum
+  - Hypertension indicators: Red/Orange spectrum
+  - Anxiety indicators: Purple/Violet spectrum
+  - Consistent color mapping across all pages
+  - Color intensity varying by severity/level
+  
+- **Layout principles:**
+  - Grid layout with clear section demarcation
+  - Consistent placement of year-comparison visuals
+  - Top-to-bottom information flow: summary → details
+  - Left-to-right information flow: simple → complex relationships
+  
+- **Typography:**
+  - Hierarchical text sizing for clear information structure
+  - Bold highlighting for key metrics and significant changes
+  - Consistent font usage throughout
+
+### Interactive Features
+- **Cross-filtering:** Enable cross-filtering across all visualizations
+- **Drill-down:** Create hierarchy levels for demographic analysis
+- **Tooltips:** Enhanced tooltips with additional context and insights
+- **Bookmarks:** Create bookmarks for key insights and comparisons
+- **What-if parameters:** For threshold analysis and projections
+- **Conditional formatting:** Visual indicators for significant changes
+- **Page navigation:** Custom navigation buttons for easy report traversal
+
+### Advanced Analytics Integration
+- **Key influencers visual:** To identify key demographic drivers
+- **Decomposition tree:** For hierarchical breakdowns
+- **Trend analysis:** With forecasting and anomaly detection
+- **Correlation analysis:** Between all relevant variables
+- **Narrative intelligence:** Automatic insights generation
+- **Clustering analysis:** For identifying population segments
+
+### Mobile Optimization
+- Create phone-optimized layout for key metrics
+- Focus on critical comparisons for small screen viewing
+- Simplified navigation for touch interfaces
