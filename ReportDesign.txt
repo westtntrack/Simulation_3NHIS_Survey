@@ -96,21 +96,6 @@
   - Key drivers analysis
   - Narrative insights panel
 
-#### Page 6: Demographic Impact Analysis
-- **Title:** Demographic Factors Impact on Health Conditions
-- **Elements:**
-  - Decomposition tree showing hierarchical relationships:
-    - Start with overall prevalence
-    - Break down by age, sex, race, region
-  - Side-by-side comparison of demographic impact on each condition
-  - Gap analysis showing disparities between demographic groups
-  - Key demographic predictors for each condition
-  - Decision tree visualization showing how demographics interact
-  - Recommendations for targeted interventions
-  - Interactive narrative with key findings
-
-
-### Advanced Features
 
 #### DAX Measures to Create
 ```
@@ -167,50 +152,4 @@ HYP-ANX Comorbidity Rate =
         COUNTX(vw_NHIS_Combined, 1)
     )
     
-Poverty Impact on HYP = 
-    DIVIDE(
-        CALCULATE([HYPEV Rate], [POVRATIO] < 1.0),
-        CALCULATE([HYPEV Rate], [POVRATIO] >= 4.0)
-    )
-```
 
-### Visual Design and Layout
-- **Color scheme:**
-  - Poverty indicators: Blue color spectrum
-  - Hypertension indicators: Red/Orange spectrum
-  - Anxiety indicators: Purple/Violet spectrum
-  - Consistent color mapping across all pages
-  - Color intensity varying by severity/level
-  
-- **Layout principles:**
-  - Grid layout with clear section demarcation
-  - Consistent placement of year-comparison visuals
-  - Top-to-bottom information flow: summary → details
-  - Left-to-right information flow: simple → complex relationships
-  
-- **Typography:**
-  - Hierarchical text sizing for clear information structure
-  - Bold highlighting for key metrics and significant changes
-  - Consistent font usage throughout
-
-### Interactive Features
-- **Cross-filtering:** Enable cross-filtering across all visualizations
-- **Drill-down:** Create hierarchy levels for demographic analysis
-- **Tooltips:** Enhanced tooltips with additional context and insights
-- **Bookmarks:** Create bookmarks for key insights and comparisons
-- **What-if parameters:** For threshold analysis and projections
-- **Conditional formatting:** Visual indicators for significant changes
-- **Page navigation:** Custom navigation buttons for easy report traversal
-
-### Advanced Analytics Integration
-- **Key influencers visual:** To identify key demographic drivers
-- **Decomposition tree:** For hierarchical breakdowns
-- **Trend analysis:** With forecasting and anomaly detection
-- **Correlation analysis:** Between all relevant variables
-- **Narrative intelligence:** Automatic insights generation
-- **Clustering analysis:** For identifying population segments
-
-### Mobile Optimization
-- Create phone-optimized layout for key metrics
-- Focus on critical comparisons for small screen viewing
-- Simplified navigation for touch interfaces
