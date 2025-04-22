@@ -1,4 +1,7 @@
 # NHIS Health Indicators Comparison (2022-2023)
+
+#This report design was generated with AI from 2 csv files that were downloaded, cleaned and added to the repository and modified based on data to visualize.
+
 ## Power BI Report Design
 
 ### Data Connection Setup
