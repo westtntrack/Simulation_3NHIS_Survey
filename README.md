@@ -61,20 +61,18 @@ Compare hypertension from poverty and stress in NHIS survey data from 2022-2023.
 </ul>
 
 <h1>Steps:</h1>
-<ol>
-<li>Save copies of original data</li>
-<li>Search for Field names in Codebook for Hypertension, Poverty, Stress/Anxiety</li>
-<li>Search for Field names in common from both files for #2, Household ID, year, age, sex, health care, etc.</li>
-<li>Edit Column Headings based on Definitions for all fields in this report
-a.	☒Remove all other columns in dataset</li>
-<li>Rename files and save</li>
-<li>Connect to SQL Server, create database, import csv’s
-a.	Change columns to 500 in advanced and decimal, numeric, float, varchar
-b.	Include all nulls
-c.	Destination to SQL Server Native Client</li>
-<li>enter SQL query to create a view with data needed for visuals</li>
-<li>Connect from Power BI 
-a.	☐Add columns with DAX to include descriptions and frequencies
-b.	☐Create visualizations</li>
-<li>Predictive Analysis for 2024 using Python?</li>
-</ol>
+<h4>
+1.	☒Save copies of original data
+2.	☒Search for Field names in Codebook for Hypertension, Poverty, Stress/Anxiety
+3.	☒Search for Field names in common from both files for #2, Household ID, year, age, sex, health care, etc.
+4.	☒Definitions for common fields added to this report
+5.	☒Rename files and save
+6.	☒Create a Github Repo for Simulation 3 and publish with csv files.
+7.	☒Use AI to analyze data from the new Github Repo, write SQL queries and DAX formulas to transform the data and make Power BI report suggestions
+8.	☒Connect to SQL Server, create database, import csv’s
+9.	☒enter SQL queries to create views
+10.	☒Convert Codes to Descriptions for each field(Some in SQL Server and some in Power BI
+11.	☒Connect from Power BI and create visualizations 
+12.	☒Finish Report
+
+</h4>
