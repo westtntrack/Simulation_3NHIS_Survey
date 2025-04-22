@@ -1,6 +1,8 @@
 <h1>Quickstart Data Analytics Simulation_3 Project (NHIS_Survey)</h1>
  <p>This Repo is a Power BI project that takes a look at NHIS survey data from the CDC website and looks at comparisons of poverty ratios with stress/hypertension, anxiety, and memory.</p>
 
+ - Predicted Target: That those in poverty would have higher rates of stress and anxiety to those who are in the middle or higher end income brackets.
+
 Full Survey Description:
 https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHIS/2023/srvydesc-508.pdf
 Codebook(For Data Cleaning):
@@ -76,3 +78,5 @@ Compare hypertension from poverty and stress in NHIS survey data from 2022-2023.
 <li>☒Finish Report</li>
 
 </ol>
+
+  - Achieved Target: Those who are near or below the poverty line have a higher Comorbidity rate with Hypertension and Anxiety than those who are Middle or Higher income.
