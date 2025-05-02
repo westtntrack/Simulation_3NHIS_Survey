@@ -1,7 +1,7 @@
 <h1>Quickstart Data Analytics Simulation_3 Project (NHIS_Survey)</h1>
  <p>This Repo is a Power BI project that takes a look at NHIS survey data from the CDC website and looks at comparisons of poverty ratios with stress/hypertension, anxiety, and memory.</p>
 
- <h3>Comments from your instructor:
+ <h3>Comments from my instructor:
 
 This project shows excellent initiative and thoroughness in managing a complex dataset from a reputable source (CDC). You demonstrated strong data handling skills by using SQL, DAX, AI tools, and Power BI to clean, transform, and visualize the data. Congratulations and Great Job overall!</h3>
 
